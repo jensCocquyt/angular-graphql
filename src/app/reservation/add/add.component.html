@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <form class="example-container">
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field> -->
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Guest</mat-label>
+        <mat-select>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Room</mat-label>
+        <mat-select>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Check-in date</mat-label>
+        <input matInput [matDatepicker]="checkin" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="checkin"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #checkin></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Check-out date</mat-label>
+        <input matInput [matDatepicker]="checkout" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="checkout"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #checkout></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field> -->
+    </form>
+  </div>
+</div>

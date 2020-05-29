@@ -3,7 +3,7 @@ import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-const uri = 'https://localhost:44382/';
+const uri = 'http://localhost:5227/graphql';
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({ uri }),

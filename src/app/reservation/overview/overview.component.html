@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-1 offset-sm-11 align-self-end">
+    <button [routerLink]="['../add']" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <table
+      mat-table
+      [dataSource]="reservations$ | async"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="checkin">
+        <th mat-header-cell *matHeaderCellDef>Check-in</th>
+        <td mat-cell *matCellDef="let element">{{ element.checkinDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="checkout">
+        <th mat-header-cell *matHeaderCellDef>Check-out</th>
+        <td mat-cell *matCellDef="let element">{{ element.checkoutDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="guest">
+        <th mat-header-cell *matHeaderCellDef>Guest name</th>
+        <td mat-cell *matCellDef="let element">{{ element.guest.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="room">
+        <th mat-header-cell *matHeaderCellDef>Room</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.room.name }} ({{ element.room.number }})
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
