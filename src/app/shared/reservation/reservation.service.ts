@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { ApolloQueryResult } from 'apollo-client';
-import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { addReservation, listReservations } from '../schema';
 import { Reservation } from './reservation.model';
-import { tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -15,33 +14,29 @@ export class ReservationService {
   public getAll(): Observable<Reservation[]> {
     return this.apollo
       .watchQuery<GetAllResponse>({
-        query: gql`
-          query ListReservations {
-            listReservations {
-              id
-              guest {
-                id
-                name
-              }
-              room {
-                id
-                name
-                number
-              }
-              checkinDate
-              checkoutDate
-            }
-          }
-        `,
+        query: listReservations,
         // fetchPolicy: 'network-only',
       })
-      .valueChanges.pipe(
-        tap(() => console.log('getAllReservations')),
-        map((result) => result.data.listReservations)
-      );
+      .valueChanges.pipe(map((result) => result.data.listReservations));
+  }
+
+  public addReservation(addReservationInput: AddReservationInputType) {
+    return this.apollo.mutate({
+      mutation: addReservation,
+      variables: {
+        reservation: addReservationInput,
+      },
+    });
   }
 }
 
 export interface GetAllResponse {
   listReservations: Reservation[];
+}
+
+export interface AddReservationInputType {
+  roomId: number;
+  guestId: number;
+  checkinDate: string;
+  checkoutDate: string;
 }

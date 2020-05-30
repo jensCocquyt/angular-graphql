@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reservation } from 'src/app/shared/reservation/reservation.model';
-import { ReservationService } from '../../shared/reservation/reservation.service.old';
+import { ReservationService } from '../../shared/reservation/reservation.service';
 
 @Component({
   selector: 'app-reservation',

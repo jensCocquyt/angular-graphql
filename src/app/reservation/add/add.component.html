@@ -1,26 +1,30 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-    <form class="example-container">
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field> -->
+    <form class="example-container" [formGroup]="form" (ngSubmit)="onSubmit()">
       <br />
       <mat-form-field appearance="fill">
         <mat-label>Guest</mat-label>
-        <mat-select>
-          <mat-option value="option">Option</mat-option>
+        <mat-select formControlName="guestId">
+          <mat-option [value]="guest.id" *ngFor="let guest of guests$ | async">
+            {{ guest.name }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Room</mat-label>
-        <mat-select>
-          <mat-option value="option">Option</mat-option>
+        <mat-select formControlName="roomId">
+          <mat-option [value]="room.id" *ngFor="let room of rooms$ | async">
+            {{ room.name }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Check-in date</mat-label>
-        <input matInput [matDatepicker]="checkin" />
+        <input
+          matInput
+          [matDatepicker]="checkin"
+          formControlName="checkinDate"
+        />
         <mat-datepicker-toggle
           matSuffix
           [for]="checkin"
@@ -29,7 +33,11 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Check-out date</mat-label>
-        <input matInput [matDatepicker]="checkout" />
+        <input
+          matInput
+          [matDatepicker]="checkout"
+          formControlName="checkoutDate"
+        />
         <mat-datepicker-toggle
           matSuffix
           [for]="checkout"
@@ -38,10 +46,16 @@
       </mat-form-field>
 
       <br />
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field> -->
+      <div class="button-wrapper">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!form.valid"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   </div>
 </div>

@@ -1,12 +1,11 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RoomsComponent } from './rooms/rooms.component';
 import { OverviewComponent } from './reservation/overview/overview.component';
 import { AddComponent } from './reservation/add/add.component';
 import { ReservationComponent } from './reservation/reservation.component';
 
 const routes: Routes = [
-  { path: 'rooms', component: RoomsComponent },
+  // { path: 'rooms', component: RoomsComponent },
   {
     path: 'reservations',
     component: ReservationComponent,

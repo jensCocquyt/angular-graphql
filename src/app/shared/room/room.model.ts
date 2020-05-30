@@ -4,9 +4,3 @@ export interface Room {
   name: string;
   status: string;
 }
-
-export interface Guest {
-  id: number;
-  name: string;
-  registerDate: Date;
-}

@@ -7,7 +7,7 @@ import { Reservation } from './reservation.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ReservationService {
+export class ReservationServiceOld {
   constructor(private getAllReservations: GetAllReservations) {}
 
   public getAll(): Observable<Reservation[]> {
