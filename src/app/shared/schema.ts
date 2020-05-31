@@ -53,7 +53,13 @@ export const addReservation = gql`
     addReservation(reservation: $reservation) {
       id
       guest {
+        id
         name
+      }
+      room {
+        id
+        name
+        number
       }
       checkinDate
       checkoutDate
