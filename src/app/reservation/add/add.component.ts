@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RoomService } from 'src/app/shared/room/room.service';
-import { Room } from 'src/app/shared/room/room.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Guest } from 'src/app/shared/guest/guest.model';
 import { GuestService } from 'src/app/shared/guest/guest.service';
 import { ReservationService } from 'src/app/shared/reservation/reservation.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Room } from 'src/app/shared/room/room.model';
+import { RoomService } from 'src/app/shared/room/room.service';
 
 @Component({
   selector: 'app-add',
@@ -39,7 +39,7 @@ export class AddComponent implements OnInit {
 
   onSubmit() {
     this.reservationService
-      .addReservation({
+      .add({
         ...this.form.value,
         checkinDate: this.formatDate(this.form.value.checkinDate),
         checkoutDate: this.formatDate(this.form.value.checkoutDate),

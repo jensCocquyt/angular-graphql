@@ -20,36 +20,50 @@ export class ReservationService {
       .valueChanges.pipe(map((result) => result.data.listReservations));
   }
 
-  public addReservation(addReservationInput: AddReservationInputType) {
-    return this.apollo.mutate({
-      mutation: addReservation,
-      variables: {
-        reservation: addReservationInput,
-      },
-      // refetchQueries: [
-      //   {
-      //     query: listReservations,
-      //   },
-      // ],
-    });
+  public add(
+    addReservationInput: AddReservationInputType
+  ): Observable<Reservation> {
+    return this.apollo
+      .mutate<AddReservationResponse>({
+        mutation: addReservation,
+        variables: {
+          reservation: addReservationInput,
+        },
+        // refetchQueries: [
+        //   {
+        //     query: listReservations,
+        //   },
+        // ],
+      })
+      .pipe(map((result) => result.data.addReservation));
   }
-  public delete(id: number) {
-    return this.apollo.mutate({
-      mutation: removeReservation,
-      variables: {
-        id,
-      },
-      // refetchQueries: [
-      //   {
-      //     query: listReservations,
-      //   },
-      // ],
-    });
+  public remove(id: number): Observable<{ id: number }> {
+    return this.apollo
+      .mutate<RemoveReservationResponse>({
+        mutation: removeReservation,
+        variables: {
+          id,
+        },
+        // refetchQueries: [
+        //   {
+        //     query: listReservations,
+        //   },
+        // ],
+      })
+      .pipe(map((result) => result.data.removeReservation));
   }
 }
 
 export interface GetAllResponse {
   listReservations: Reservation[];
+}
+
+export interface AddReservationResponse {
+  addReservation: Reservation;
+}
+
+export interface RemoveReservationResponse {
+  removeReservation: { id: number };
 }
 
 export interface AddReservationInputType {

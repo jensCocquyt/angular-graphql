@@ -25,6 +25,6 @@ export class OverviewComponent implements OnInit {
     this.reservations$ = this.resevationService.getAll();
   }
   delete(reservation: Reservation) {
-    this.resevationService.delete(reservation.id).subscribe();
+    this.resevationService.remove(reservation.id).subscribe();
   }
 }
