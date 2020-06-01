@@ -26,6 +26,11 @@ export class ReservationService {
       variables: {
         reservation: addReservationInput,
       },
+      // refetchQueries: [
+      //   {
+      //     query: listReservations,
+      //   },
+      // ],
     });
   }
 }
