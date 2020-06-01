@@ -66,3 +66,11 @@ export const addReservation = gql`
     }
   }
 `;
+
+export const removeReservation = gql`
+  mutation RemoveReservation($id: Int) {
+    removeReservation(id: $id) {
+      id
+    }
+  }
+`;

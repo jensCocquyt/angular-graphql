@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { addReservation, listReservations } from '../schema';
+import { addReservation, listReservations, removeReservation } from '../schema';
 import { Reservation } from './reservation.model';
 
 @Injectable({
@@ -25,6 +25,19 @@ export class ReservationService {
       mutation: addReservation,
       variables: {
         reservation: addReservationInput,
+      },
+      // refetchQueries: [
+      //   {
+      //     query: listReservations,
+      //   },
+      // ],
+    });
+  }
+  public delete(id: number) {
+    return this.apollo.mutate({
+      mutation: removeReservation,
+      variables: {
+        id,
       },
       // refetchQueries: [
       //   {

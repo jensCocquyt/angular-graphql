@@ -10,11 +10,21 @@ import { ReservationService } from '../../shared/reservation/reservation.service
 })
 export class OverviewComponent implements OnInit {
   reservations$: Observable<Reservation[]>;
-  displayedColumns: string[] = ['id', 'checkin', 'checkout', 'guest', 'room'];
+  displayedColumns: string[] = [
+    'id',
+    'checkin',
+    'checkout',
+    'guest',
+    'room',
+    'actions',
+  ];
 
   constructor(private resevationService: ReservationService) {}
 
   ngOnInit() {
     this.reservations$ = this.resevationService.getAll();
+  }
+  delete(reservation: Reservation) {
+    this.resevationService.delete(reservation.id).subscribe();
   }
 }
